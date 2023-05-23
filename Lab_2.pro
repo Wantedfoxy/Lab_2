@@ -10,6 +10,11 @@ SOURCES += \
         Base/ClassUnit.cpp \
         Base/MethodUnit.cpp \
         Base/Unit.cpp \
+        CppClassUnit.cpp \
+        CppMethodUnit.cpp \
+        CsharpClassUnit.cpp \
+        JavaMethodUnit.cpp \
+        PrintOperatorUnit.cpp \
         main.cpp
 
 # Default rules for deployment.

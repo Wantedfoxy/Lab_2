@@ -1,20 +1,25 @@
 #pragma once
 
-#include <vector>
-#include "Unit.cpp"
+#include "Base/ClassUnit.cpp"
 
-class ClassUnit : public Unit {
+class CsharpClassUnit : public ClassUnit {
 public:
     enum AccessModifier {
         PUBLIC,
         PROTECTED,
-        PRIVATE
+        PRIVATE,
+        PRIVATE_PROTECTED,
+        FILE,
+        INTERNAL,
+        PROTECTED_INTERNAL
     };
-    const std::vector<std::string> ACCESS_MODIFIERS  = {"public", "protected", "private"};
-public:
-    // Конструктор класса ClassUnit
-    // Устанавливает размер вектора m_fields равным количеству доступных модификаторов класса
-    explicit ClassUnit(const std::string &name) : m_name(name) {
+    const std::vector<std::string> ACCESS_MODIFIERS = {"public", "protected", "private", "private protected", "file",
+                                                       "internal", "protected_internal"};
+
+    // Конструктор, который принимает строку name в качестве аргумента и передает ее базовому
+    // классу ClassUnit для инициализации имени класса, а также устанавливает размер вектора
+    // m_fields равным количеству доступных модификаторов класса
+    explicit CsharpClassUnit(const std::string &name) : ClassUnit(name) {
         m_fields.resize(ACCESS_MODIFIERS.size());
     }
 
@@ -34,7 +39,7 @@ public:
 
     // Метод для формирования строкового представления класса со всеми его подэлементами,
     // учитывая модификаторы доступа и вложенность, level Уровень вложенности элемента
-    virtual std::string compile(unsigned int level = 0) const override {
+    std::string compile(unsigned int level = 0) const override {
         // Создание переменной, которая будет содержать сгенерированный результат
         std::string result = "class " + m_name + " {\n";
         // Цикл, который проходит по доступным модификаторам класса
@@ -44,8 +49,8 @@ public:
             if (m_fields[i].empty()) {
                 continue;
             }
-            // Если не пуст, то перебираются все элементы вектора m_fields и формируется строка для
-            // каждого подэлемента класса
+            // Если не пуст, то для каждого поля вызывается метод compile и результат добавляется
+            // в строку result вместе с соответствующим модификатором доступа
             for (const auto &f: m_fields[i]) {
                 result += ACCESS_MODIFIERS[i] + f->compile(level + 1) + "\n";
             }
@@ -54,11 +59,4 @@ public:
         result += generateShift(level) + "};\n";
         return result;
     }
-
-    // Объявление псевдонима Fields для std::vector<std::shared_ptr<Unit>>
-    using Fields = std::vector<std::shared_ptr<Unit>>;
-
-protected:
-    std::string m_name;
-    std::vector<Fields> m_fields;
 };

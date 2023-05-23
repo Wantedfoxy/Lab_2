@@ -11,7 +11,7 @@ public:
 
     // Метод для добавления вложенных элементов
     // Бросает исключение std::runtime_error, так как базовый класс Unit не поддерживает
-    // добавление подэлементов.
+    // добавление подэлементов
     virtual void add(const std::shared_ptr<Unit> &, Flags) {
         throw std::runtime_error("Not supported");
     }
