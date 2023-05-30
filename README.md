@@ -29,7 +29,9 @@ Class generator
 - ClassUnit
 - MethodUnit 
 - PrintOperatorUnit
-От которых, в свою очередь, будут наследоваться конкретные продукты:
+
+<h3>От которых, в свою очередь, будут наследоваться конкретные продукты:</h3>
+
 - CppClassUnit
 - CppMethodUnit
 - CppPrintOperatorUnit
