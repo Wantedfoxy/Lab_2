@@ -42,8 +42,9 @@ Class generator
 
 - JavaMethodUnit
 - JavaPrintOperatorUnit
-
+<br>
+Также созданы абстрактная фабрика ProgrammFactory, и конкретные фабрики ProgrammFactoryCpp, ProgrammFactoryCsharp и ProgrammFactoryJava
+<br>
 <h2>Диаграмма классов</h2>
 
-![Lab2](https://github.com/Wantedfoxy/Lab_2/assets/50704060/4de2dee8-76b5-427e-a791-0de2a833886e)
-
+![Lab2 (1)](https://github.com/Wantedfoxy/Lab_2/assets/50704060/ff808944-7503-4e55-8673-e5dc6b329522)
