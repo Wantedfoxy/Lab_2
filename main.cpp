@@ -2,11 +2,13 @@
 #include <iostream>
 #include "Base/ClassUnit.cpp"
 #include "Base/MethodUnit.cpp"
-#include "PrintOperatorUnit.cpp"
+#include "CsharpClassUnit.cpp"
+#include "CsharpPrintOperatorUnit.cpp"
+#include "JavaMethodUnit.cpp"
+#include "JavaPrintOperatorUnit.cpp"
 #include "CppClassUnit.cpp"
 #include "CppMethodUnit.cpp"
-#include "JavaMethodUnit.cpp"
-#include "CsharpClassUnit.cpp"
+#include "CppPrintOperatorUnit.cpp"
 
 int main(int argc, char *argv[]) {
 
@@ -34,12 +36,12 @@ int main(int argc, char *argv[]) {
         csharpClass.add(method, csharpMethods.value(method));
     }
     // Создается объект csharpMethod класса MethodUnit с именем "testFunc4" и модификатором
-    // MethodUnit::STATIC. В него добавляется объект PrintOperatorUnit с текстом "Hello, world!\n"
+    // MethodUnit::STATIC. В него добавляется объект CsharpPrintOperatorUnit с текстом "Hello, world!\n"
     // auto позволяет компилятору самостоятельно определить тип переменной csharpMethod на основе
     // возвращаемого значения функции std::make_shared<MethodUnit>()
     auto csharpMethod = std::make_shared<MethodUnit>("testFunc4", "void",
                                                      MethodUnit::STATIC);
-    csharpMethod->add(std::make_shared<PrintOperatorUnit>(R"(Hello, world!\n)"));
+    csharpMethod->add(std::make_shared<CsharpPrintOperatorUnit>(R"(Hello, world!\n)"));
     // csharpMethod добавляется в csharpClass с модификатором ClassUnit::PROTECTED
     csharpClass.add(csharpMethod, ClassUnit::PROTECTED);
 
@@ -70,10 +72,10 @@ int main(int argc, char *argv[]) {
         javaClass.add(method, javaMethods.value(method));
     }
     // Создается объект javaMethod класса MethodUnit с именем "testFunc4" и модификатором
-    // MethodUnit::STATIC. В него добавляется объект PrintOperatorUnit с текстом "Hello, world!\n"
+    // MethodUnit::STATIC. В него добавляется объект JavaPrintOperatorUnit с текстом "Hello, world!\n"
     auto javaMethod = std::make_shared<MethodUnit>("testFunc4", "void",
                                                    MethodUnit::STATIC);
-    javaMethod->add(std::make_shared<PrintOperatorUnit>(R"(Hello, world!\n)"));
+    javaMethod->add(std::make_shared<JavaPrintOperatorUnit>(R"(Hello, world!\n)"));
     // javaMethod добавляется в javaClass с модификатором ClassUnit::PROTECTED
     javaClass.add(javaMethod, ClassUnit::PROTECTED);
 
@@ -102,10 +104,10 @@ int main(int argc, char *argv[]) {
         cppClass.add(method, cppMethods.value(method));
     }
     // Создается объект cppMethod класса MethodUnit с именем "testFunc4" и модификатором
-    // MethodUnit::STATIC. В него добавляется объект PrintOperatorUnit с текстом "Hello, world!\n"
+    // MethodUnit::STATIC. В него добавляется объект CppPrintOperatorUnit с текстом "Hello, world!\n"
     auto cppMethod = std::make_shared<MethodUnit>("testFunc4", "void",
                                                   MethodUnit::STATIC);
-    cppMethod->add(std::make_shared<PrintOperatorUnit>(R"(Hello, world!\n)"));
+    cppMethod->add(std::make_shared<CppPrintOperatorUnit>(R"(Hello, world!\n)"));
     // cppMethod добавляется в cppClass с модификатором ClassUnit::PROTECTED
     cppClass.add(cppMethod, ClassUnit::PROTECTED);
 
